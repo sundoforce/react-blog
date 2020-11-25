@@ -15,6 +15,9 @@ app.user((ctx, next) => {
 })
 
 
+
+// https://thebook.io/080203/ch21/03/02-03/
+
 // app 인스턴스에 라우터 적용
 app.use(ctx => {
   ctx.body = 'hello world';
