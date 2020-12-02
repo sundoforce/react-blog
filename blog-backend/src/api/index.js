@@ -1,9 +1,4 @@
-const Router = require('koa-router');
-const posts = require('./posts');
+/* eslint-disable no-global-assign */
 
-const api = new Router();
-
-api.use('/posts', posts.routes());
-
-// export
-module.exports = api;
+require = require('esm')(module /*, options*/);
+module.exports = require('./main.js');
