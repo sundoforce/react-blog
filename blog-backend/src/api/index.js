@@ -1,4 +1,9 @@
-/* eslint-disable no-global-assign */
+import Router from 'koa-router';
+import posts from './posts';
 
-require = require('esm')(module /*, options*/);
-module.exports = require('./main.js');
+const api = new Router();
+
+api.use('/posts', posts.routes());
+
+// 라우터를 내보냅니다.
+export default api;
