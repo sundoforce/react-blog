@@ -57,7 +57,7 @@ const LoginForm = ({ history }) => {
       try {
         localStorage.setItem('user', JSON.stringify(user));
       } catch (e) {
-        console.log('loaclStorage is not working');
+        console.log('localStorage is not working');
       }
     }
   }, [history, user]);
