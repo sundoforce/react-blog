@@ -8,6 +8,7 @@ import { createStore, applyMiddleware } from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import createSagaMiddleware from 'redux-saga';
 import rootReducer, { rootSaga } from './modules';
+import { tempSetUser, check } from './modules/user'
 
 const sagaMiddleware = createSagaMiddleware();
 
@@ -16,6 +17,14 @@ const store = createStore(
   composeWithDevTools(applyMiddleware(sagaMiddleware)),
 );
 
+function loadUser() {
+   const user = loaclStroage.getItem('user');
+   if (!user) return; // 로그인 상태가 아니라면 아무것도 안함.
+
+   store.dispatch(tempSetUser(user));
+   store.dispatch(check());
+
+}
 sagaMiddleware.run(rootSaga);
 
 ReactDOM.render(
