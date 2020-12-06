@@ -1,0 +1,17 @@
+{
+	"folders": [
+		{
+			"path": "../../.."
+		},
+		{
+			"path": "../../../blog-backend"
+		},
+		{
+			"path": "../.."
+		},
+		{
+			"path": "../../../_blog-frontend"
+		}
+	],
+	"settings": {}
+}
