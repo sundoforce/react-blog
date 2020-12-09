@@ -2,6 +2,8 @@ import React from 'react';
 import styled from 'styled-components';
 import palette from '../../lib/styles/palette';
 import Responsive from '../common/Responsive';
+import SubInfo from '../common/SubInfo';
+// import Tags = from '../common/Tags';
 
 const PostViewerBlock = styled(Responsive) `
   margin-top: 4rem;
@@ -36,16 +38,17 @@ const PostContent = styled.div`
           return null;
       }
 
-      const { title, body, user, publishedDate, tags}  = post;
+      const { title, body, user, publishedDate} = post;
       return (
           <PostViewerBlock>
               <PostHead>
                   <h1>{title}</h1>
-                   {/* <SubInfo
-                      username={user.username}
-                      publishedDate={publishedDate}
-                      hasMarginTop
-                      /> */}
+                   <SubInfo>
+                     <span>
+                         <b>{user.username}</b>
+                     </span>
+                     <span>{new Date(publishedDate).toLocaleDateString()}</span>
+                   </SubInfo>
               </PostHead>
               {/* <Tage tags={tags} /> */}
               <PostContent dangerouslySetInnerHTML={{ __html: body}} />
