@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import palette from '../../lib/styles/palette';
-import Responseive from '../common/Responsive';
+import Responsive from '../common/Responsive';
 
 const PostViewerBlock = styled(Responsive) `
   margin-top: 4rem;
@@ -26,9 +26,9 @@ const PostContent = styled.div`
       // ㅇㅔ러발생시 
       if (error) {
           if (error.response && error.response.staus === 404 ) {
-              return <PostViewrBlock>존재하지 않는 포스트 입니다. </PostViewrBlock>
+              return <PostViewerBlock>존재하지 않는 포스트 입니다. </PostViewerBlock>
           }
-          return <PostViwerBlock>오류발생 </PostViwerBlock>
+          return <PostViewerBlock>오류발생 </PostViewerBlock>
       }
 
       // 로딩중이거나, 아직 포스트 데이터가 없을 시
@@ -41,13 +41,13 @@ const PostContent = styled.div`
           <PostViewerBlock>
               <PostHead>
                   <h1>{title}</h1>
-                   <SubInfo
+                   {/* <SubInfo
                       username={user.username}
                       publishedDate={publishedDate}
                       hasMarginTop
-                      />
+                      /> */}
               </PostHead>
-              <Tage tags={tags} />
+              {/* <Tage tags={tags} /> */}
               <PostContent dangerouslySetInnerHTML={{ __html: body}} />
           </PostViewerBlock>
       );
