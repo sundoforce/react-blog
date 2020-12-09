@@ -1,0 +1,57 @@
+import React from 'react';
+import styled from 'styled-components';
+import palette from '../../lib/styles/palette';
+import Responseive from '../common/Responsive';
+
+const PostViewerBlock = styled(Responsive) `
+  margin-top: 4rem;
+`;
+const PostHead = styled.div`
+    border-bottom: 1px solid ${palette.gray[2]};
+    padding-bottom: 3rem;
+    margin-bottom: 3rem
+    h1 {
+        font-size: 3rem;
+        lin-height: 1.5;
+        margin: 0;
+    }
+`;
+
+const PostContent = styled.div`
+  font-size: 1.3125 rem;
+  color: ${palette.gray[8]};
+  `;
+
+  const PostViewer = ({ post, error, loading }) => {
+      // ㅇㅔ러발생시 
+      if (error) {
+          if (error.response && error.response.staus === 404 ) {
+              return <PostViewrBlock>존재하지 않는 포스트 입니다. </PostViewrBlock>
+          }
+          return <PostViwerBlock>오류발생 </PostViwerBlock>
+      }
+
+      // 로딩중이거나, 아직 포스트 데이터가 없을 시
+      if (loading || !post ) {
+          return null;
+      }
+
+      const { title, body, user, publishedDate, tags}  = post;
+      return (
+          <PostViewerBlock>
+              <PostHead>
+                  <h1>{title}</h1>
+                   <SubInfo
+                      username={user.username}
+                      publishedDate={publishedDate}
+                      hasMarginTop
+                      />
+              </PostHead>
+              <Tage tags={tags} />
+              <PostContent dangerouslySetInnerHTML={{ __html: body}} />
+          </PostViewerBlock>
+      );
+  };
+
+  export default PostViewer;
+
