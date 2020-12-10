@@ -3,7 +3,6 @@ import styled from 'styled-components';
 import palette from '../../lib/styles/palette';
 import Responsive from '../common/Responsive';
 import SubInfo from '../common/SubInfo';
-import Tags from '../common/Tags';
 
 const PostViewerBlock = styled(Responsive) `
   margin-top: 4rem;
@@ -24,7 +23,7 @@ const PostContent = styled.div`
   color: ${palette.gray[8]};
   `;
 
-  const PostViewer = ({ post, error, loading }) => {
+  const PostViewer = ({ post, error, loading, actionButtons }) => {
       // ㅇㅔ러발생시 
       if (error) {
           if (error.response && error.response.staus === 404 ) {
@@ -38,7 +37,7 @@ const PostContent = styled.div`
           return null;
       }
 
-      const { title, body, user, publishedDate, tags} = post;
+      const { title, body, user, publishedDate } = post;
       return (
           <PostViewerBlock>
               <PostHead>
@@ -49,7 +48,7 @@ const PostContent = styled.div`
                      hasMarginTop
                    />
               </PostHead>
-              <Tags tags={tags} />
+              {actionButtons}
               <PostContent dangerouslySetInnerHTML={{ __html: body}} />
           </PostViewerBlock>
       );
