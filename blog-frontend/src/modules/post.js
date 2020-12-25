@@ -1,59 +1,43 @@
-import React, { useState } from 'react';
-import styled from 'styled-components';
-import palette from '../../lib/styles/palette';
-import AskRemoveModal from './AskRemoveModal';
+import { createAction, handleActions } from 'redux-actions';
+import createRequestSaga, {
+  createRequestActionTypes,
+} from '../lib/createRequestSaga';
+import * as postsAPI from '../lib/api/posts';
+import { takeLatest } from 'redux-saga/effects';
 
-const PostActionButtonsBlock = styled.div`
-  display: flex;
-  justify-content: flex-end;
-  margin-bottom: 2rem;
-  margin-top: -1.5rem;
-`;
+const [
+  READ_POST,
+  READ_POST_SUCCESS,
+  READ_POST_FAILURE,
+] = createRequestActionTypes('post/READ_POST');
+const UNLOAD_POST = 'post/UNLOAD_POST'; // 포스트 페이지에서 벗어날 때 데이터 비우기
 
-const ActionButton = styled.button`
-  padding: 0.25rem 0.5rem;
-  border-radius: 4px;
-  color: ${palette.gray[6]};
-  font-weight: bold;
-  border: none;
-  outline: none;
-  font-size: 0.875rem;
-  cursor: pointer;
-  &:hover {
-    background: ${palette.gray[1]};
-    color: ${palette.cyan[7]};
-  }
-  & + & {
-    margin-left: 0.25rem;
-  }
-`;
+export const readPost = createAction(READ_POST, id => id);
+export const unloadPost = createAction(UNLOAD_POST);
 
-const PostActionButtons = ({ onEdit, onRemove }) => {
-  const [modal, setModal] = useState(false);
-  const onRemoveClick = () => {
-    setModal(true);
-  };
-  const onCancel = () => {
-    setModal(false);
-  };
-  const onConfirm = () => {
-    setModal(false);
-    onRemove();
-  };
+const readPostSaga = createRequestSaga(READ_POST, postsAPI.readPost);
+export function* postSaga() {
+  yield takeLatest(READ_POST, readPostSaga);
+}
 
-  return (
-    <>
-      <PostActionButtonsBlock>
-        <ActionButton onClick={onEdit}>수정</ActionButton>
-        <ActionButton onClick={onRemoveClick}>삭제</ActionButton>
-      </PostActionButtonsBlock>
-      <AskRemoveModal
-        visible={modal}
-        onConfirm={onConfirm}
-        onCancel={onCancel}
-      />
-    </>
-  );
+const initialState = {
+  post: null,
+  error: null,
 };
 
-export default PostActionButtons;
+const post = handleActions(
+  {
+    [READ_POST_SUCCESS]: (state, { payload: post }) => ({
+      ...state,
+      post,
+    }),
+    [READ_POST_FAILURE]: (state, { payload: error }) => ({
+      ...state,
+      error,
+    }),
+    [UNLOAD_POST]: () => initialState,
+  },
+  initialState,
+);
+
+export default post;
