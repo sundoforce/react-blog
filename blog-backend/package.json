@@ -27,4 +27,3 @@
     "start:dev": "nodemon --watch src/ -r esm src/index.js"
   }
 }
-
