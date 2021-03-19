@@ -42,7 +42,7 @@ const PostContent = styled.div`
       return (
           <PostViewerBlock>
               <Helmet>
-                  <title>{title} - REACTERS </title>
+                  <title>{title} - kakao cloud </title>
               </Helmet>
               <PostHead>
                   <h1>{title}</h1>

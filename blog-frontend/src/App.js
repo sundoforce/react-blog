@@ -10,7 +10,7 @@ const App = () => {
   return (
     <>
       <Helmet>
-        <title>REACTERS</title>
+        <title>Kakao Cloud - React</title>
       </Helmet>
       <Route component={PostListPage} path={['/@:username', '/']} exact />
       <Route component={LoginPage} path="/login" />
