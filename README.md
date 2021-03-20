@@ -26,3 +26,6 @@ npm start 명령어를 콘솔에서 입력 했을 때, webpack-dev-server 가 �
 
 -> When using npm: npm i -D webpack-cli  
 -> When using yarn: yarn add -D webpack-cli  
+
+
+koa router가 host 0.0.0.0:3000 으로 해결해야함.
