@@ -1,5 +1,5 @@
 require('dotenv').config();
-import Koa from 'koa';
+// import Koa from 'koa';
 import Router from 'koa-router';
 import bodyParser from 'koa-bodyparser';
 import mongoose from 'mongoose';
@@ -8,6 +8,7 @@ import path from 'path';
 import send from 'koa-send';
 
 const cors = require('@koa/cors');
+const app = require("https-localhost")()
 
 import api from './api';
 import jwtMiddleware from './lib/jwtMiddleware';
@@ -29,8 +30,6 @@ mongoose
   });
 
 
-
-const app = new Koa();
 app.use(cors());
 const router = new Router();
 
