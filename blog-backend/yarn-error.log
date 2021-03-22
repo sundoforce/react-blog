@@ -1335,7 +1335,7 @@ Lockfile:
       koa-compose "^3.0.0"
       methods "^1.0.1"
       path-to-regexp "^1.1.1"
-      urijs "^1.19.0"
+      urijs "^1.19.6"
   
   koa@^2.7.0:
     version "2.13.0"
@@ -1538,7 +1538,7 @@ Lockfile:
       mongodb "3.6.3"
       mongoose-legacy-pluralize "1.0.2"
       mpath "0.8.0"
-      mquery "3.2.2"
+      mquery "3.2.3"
       ms "2.1.2"
       regexp-clone "1.0.0"
       safe-buffer "5.2.1"
@@ -1550,8 +1550,8 @@ Lockfile:
     resolved "https://registry.yarnpkg.com/mpath/-/mpath-0.8.0.tgz#48bc1da84e75519d4d74ee6242a4a7e16b4e1997"
     integrity sha512-slIifXzF6pBxKpPV47ScgqWfGgkpwZNy55fY/umDrgmAxjWMz/WYzYsd8cThU49kw0rLyPWTZaWrOlazaeW57Q==
   
-  mquery@3.2.2:
-    version "3.2.2"
+  mquery@^3.2.3:
+    version "3.2.3"
     resolved "https://registry.yarnpkg.com/mquery/-/mquery-3.2.2.tgz#e1383a3951852ce23e37f619a9b350f1fb3664e7"
     integrity sha512-XB52992COp0KP230I3qloVUbkLUxJIu328HBP2t2EsxSFtf4W1HPSOBWOXf1bqxK4Xbb66lfMJ+Bpfd9/yZE1Q==
     dependencies:
@@ -2268,8 +2268,8 @@ Lockfile:
     dependencies:
       punycode "^2.1.0"
   
-  urijs@^1.19.0:
-    version "1.19.2"
+  urijs@^1.19.6:
+    version "1.19.6"
     resolved "https://registry.yarnpkg.com/urijs/-/urijs-1.19.2.tgz#f9be09f00c4c5134b7cb3cf475c1dd394526265a"
     integrity sha512-s/UIq9ap4JPZ7H1EB5ULo/aOUbWqfDi7FKzMC2Nz+0Si8GiT1rIEaprt8hy3Vy2Ex2aJPpOQv4P4DuOZ+K1c6w==
   
