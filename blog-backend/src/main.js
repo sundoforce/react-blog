@@ -29,7 +29,6 @@ mongoose
   });
 
 
-const cors = require('@koa/cors');
 
 const app = new Koa();
 app.use(cors());
