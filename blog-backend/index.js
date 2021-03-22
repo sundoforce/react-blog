@@ -16,6 +16,6 @@ app.use(bodyParser());
 // app 인스턴스에 라우터 적용
 app.use(router.routes()).use(router.allowedMethods());
 
-app.listen(4000,'0.0.0.0',  () => {
+app.listen(4000,  () => {
   console.log('listening to port 4000');
 });
