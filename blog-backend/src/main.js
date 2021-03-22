@@ -56,7 +56,18 @@ app.use(async ctx => {
     await send(ctx, 'index.html', { root: buildDirectory});
   }
 })
+const https = require('https');
+const fs = require('fs');
 
+const options = {
+    key: fs.readFileSync(' /etc/letsencrypt/live/react.qooo.io/fullchain.pem'),
+    cert: fs.readFileSync('/etc/letsencrypt/live/react.qooo.io/privkey.pem')
+};
+
+https.createServer(options, (req, res) => {
+    res.writeHead(200);
+    res.end('hello world\n');
+}).listen(8000);
 
 // PORT 가 지정되어있지 않다면 4000 을 사용
 const port = PORT || 4000;
