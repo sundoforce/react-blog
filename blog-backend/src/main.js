@@ -6,9 +6,8 @@ import mongoose from 'mongoose';
 import serve from 'koa-static';
 import path from 'path';
 import send from 'koa-send';
-const cors = require('cors');
 
-
+const cors = require('@koa/cors');
 
 import api from './api';
 import jwtMiddleware from './lib/jwtMiddleware';
@@ -29,8 +28,13 @@ mongoose
     console.error(e);
   });
 
+const Koa = require('koa');
+const cors = require('@koa/cors');
+
 const app = new Koa();
+app.use(cors());
 const router = new Router();
+
 
 // 라우터 설정
 router.use('/api', api.routes()); // api 라우트 적용
@@ -39,7 +43,7 @@ router.use('/api', api.routes()); // api 라우트 적용
 app.use(bodyParser());
 app.use(jwtMiddleware);
 
-app.use(cors()); 
+
 // app 인스턴스에 라우터 적용
 app.use(router.routes()).use(router.allowedMethods());
 
@@ -53,10 +57,13 @@ app.use(async ctx => {
     await send(ctx, 'index.html', { root: buildDirectory});
   }
 })
+
+
 // PORT 가 지정되어있지 않다면 4000 을 사용
 const port = PORT || 4000;
 const host = HOST || '0.0.0.0';
-app.listen(port, host, 1, () => {
+
+app.listen(port, host, () => {
   console.log(HOST)
   console.log('Host', host);
   console.log('Listening to port %d', port);
