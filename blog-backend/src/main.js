@@ -6,6 +6,9 @@ import mongoose from 'mongoose';
 import serve from 'koa-static';
 import path from 'path';
 import send from 'koa-send';
+const cors = require('cors');
+
+
 
 import api from './api';
 import jwtMiddleware from './lib/jwtMiddleware';
@@ -36,7 +39,7 @@ router.use('/api', api.routes()); // api 라우트 적용
 app.use(bodyParser());
 app.use(jwtMiddleware);
 
-
+app.use(cors()); 
 // app 인스턴스에 라우터 적용
 app.use(router.routes()).use(router.allowedMethods());
 
