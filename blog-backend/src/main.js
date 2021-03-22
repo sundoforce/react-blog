@@ -60,7 +60,7 @@ const https = require('https');
 const fs = require('fs');
 
 const options = {
-    key: fs.readFileSync(' /etc/letsencrypt/live/react.qooo.io/fullchain.pem'),
+    key: fs.readFileSync('/etc/letsencrypt/live/react.qooo.io/fullchain.pem'),
     cert: fs.readFileSync('/etc/letsencrypt/live/react.qooo.io/privkey.pem')
 };
 
