@@ -63,7 +63,7 @@ app.use(async ctx => {
 const port = PORT || 4000;
 const host = HOST || '0.0.0.0';
 
-app.listen(port, host, () => {
+app.listen(port, () => {
   console.log(HOST)
   console.log('Host', host);
   console.log('Listening to port %d', port);
