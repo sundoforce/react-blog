@@ -3,7 +3,7 @@ https://react.qooo.io
 
 2021.02.24일(작성)
 - 삭제, 재설치 후 HTTPS -> HTTP를 호출 시 에러 발생합니다.
-- local에서 스샷 캡쳐 참고 
+- local에서 스샷 캡쳐 참고 부탁드립니다
 
 react-blog
 
