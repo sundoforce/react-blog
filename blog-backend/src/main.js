@@ -14,25 +14,27 @@ import jwtMiddleware from './lib/jwtMiddleware';
 
 
 // 비구조화 할당을 통하여 process.env 내부 값에 대한 레퍼런스 만들기
-const { PORT, MONGO_URI, HOST } = process.env;
+const {PORT, MONGO_URI, HOST} = process.env;
+
 
 mongoose
-  .connect(MONGO_URI, { 
-    useNewUrlParser: true, 
-    useFindAndModify: false,
-    useUnifiedTopology: true })
-  .then(() => {
-    console.log('Connected to MongoDB');
-  })
-  .catch(e => {
-    console.error(e);
-  });
+    .connect(MONGO_URI, {
+        useNewUrlParser: true,
+        useFindAndModify: false,
+        useUnifiedTopology: true
+    })
+    .then(() => {
+        console.log('Connected to MongoDB');
+    })
+    .catch(e => {
+        console.error(e);
+    });
 
 
-
+const router = new Router();
 const app = new Koa();
 app.use(cors());
-const router = new Router();
+
 
 
 // 라우터 설정
@@ -50,32 +52,38 @@ app.use(router.routes()).use(router.allowedMethods());
 const buildDirectory = path.resolve(__dirname, '../../blog-frontend/build');
 app.use(serve(buildDirectory));
 app.use(async ctx => {
-  // Not Found이고 , 주소가 /api로 시작하지 않는 경어 
-  if (ctx.status === 404 && ctx.path.indexOf('/api') !== 0) {
-    // index.html
-    await send(ctx, 'index.html', { root: buildDirectory});
-  }
+    // Not Found이고 , 주소가 /api로 시작하지 않는 경어
+    if (ctx.status === 404 && ctx.path.indexOf('/api') !== 0) {
+        // index.html
+        await send(ctx, 'index.html', {root: buildDirectory});
+    }
 })
-const https = require('https');
+
 const fs = require('fs');
 
-const options = {
-    key: fs.readFileSync('/etc/letsencrypt/live/react.qooo.io/fullchain.pem'),
-    cert: fs.readFileSync('/etc/letsencrypt/live/react.qooo.io/privkey.pem')
+
+const https = require('https');
+
+// Cross 
+app.use(cors());
+
+// CORS 옵션
+let corsOptions = {
+    // origin: process.env.CLIENT_HOST,
+    origin: "*", 
+    credentials: true,
 };
 
-https.createServer(options, (req, res) => {
-    res.writeHead(200);
-    res.end('hello world\n');
-}).listen(8000);
-
+// CORS 허용
+app.proxy = true; // true 일때 proxy 헤더들을 신뢰함
+app.use(cors(corsOptions));
 // PORT 가 지정되어있지 않다면 4000 을 사용
 const port = PORT || 4000;
 const host = HOST || '0.0.0.0';
 
 app.listen(port, () => {
-  console.log(HOST)
-  console.log('Host', host);
-  console.log('Listening to port %d', port);
-  
-});
+   console.log(HOST)
+   console.log('Host', host);
+   console.log('Listening to port %d', port);
+
+ });

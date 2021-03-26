@@ -6,10 +6,13 @@
   "dependencies": {
     "@hapi/joi": "^17.1.1",
     "@koa/cors": "^3.1.0",
+    "bcrypt": "^5.0.1",
     "cors": "^2.8.5",
     "dotenv": "^7.0.0",
     "eslint-config-prettier": "^4.1.0",
     "esm": "^3.2.22",
+    "fs": "^0.0.1-security",
+    "https-localhost": "^4.6.4",
     "joi": "^17.3.0",
     "jsonwebtoken": "^8.5.1",
     "koa": "^2.7.0",
@@ -17,6 +20,7 @@
     "koa-router": "^7.4.0",
     "koa-static": "^5.0.0",
     "mongoose": "^5.5.2",
+    "path": "^0.12.7",
     "react-router-dom": "^5.2.0",
     "sanitize-html": "^2.2.0"
   },
