@@ -1,6 +1,7 @@
 import axios from 'axios';
 
 const client = axios.create();
+const cors = require('cors');
 
 /*
   글로벌 설정 예시:
@@ -10,6 +11,12 @@ const client = axios.create();
 //process.env.NODE_ENV === 'development' ? 'http://192.168.55.71:4000/' : 'https://react.qooo.io/';
 
 client.defaults.baseURL = 'https://react.qooo.io';
+/*
+client.defaults.baseURL = 'http://192.168.55.71:4000/';
+axios.defaults.headers.post['Content-Type'] = 'application/json;charset=utf-8';
+axios.defaults.headers.post['Access-Control-Allow-Origin'] = '*';
+>>>>>>> f1c0b055a8716b695fa2c02da8557a07d2cf4108
+/*
 /*
 // 헤더 설정
 //client.defaults.headers.common['Authorization'] = 'Bearer a1b2c3d4';
